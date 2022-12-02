@@ -53,7 +53,6 @@
 
 
 
-
 int main() // int argc, char *argv[]
 {
     printf("|--------------|\n");
@@ -117,6 +116,7 @@ int main() // int argc, char *argv[]
     printf("- %.3f Kč obrat na zásilku = %ld Kč obrat / %d zásilek\n", (double)(DAT_OBRAT)/DAT_ZASILKY, DAT_OBRAT, DAT_ZASILKY);
     printf("\n");
 
+
     printf("Zásilky\n");
     double VAR_ZASILKY_DEN = (double)DAT_ZASILKY/365;
     printf("- %.3f rozvezených zásilek za den = %d zásilek za rok / 365 dní v roce\n", VAR_ZASILKY_DEN, DAT_ZASILKY);
@@ -128,6 +128,7 @@ int main() // int argc, char *argv[]
     double VAR_ZASILKY_VYDEJNIMISTO_DEN = (double)(VAR_ZASILKY_DODAVKA_DEN)/VAR_VYDEJNIMISTA_DODAVKA;
     printf("- %.3f zásilek na výdejní místo na den (vyložení nebo naložení) = %.3f zásilek na dodávku na den / %.3f výdejních míst na jednu dodávku\n", VAR_ZASILKY_VYDEJNIMISTO_DEN, VAR_ZASILKY_DODAVKA_DEN, VAR_VYDEJNIMISTA_DODAVKA);
     printf("\n");
+
 
     printf("Rozvoz/svoz na výdejní místa\n");
     double VAR_DODAVKA_SANCE_CESTA_BOX = (double)(DAT_BOXY)/DAT_DODAVKY*100;
@@ -144,7 +145,7 @@ int main() // int argc, char *argv[]
     printf("- %d - %d minut trvá dodávce trasa bez boxu\n", (int)round(VAR_VYDEJNIMISTA_DODAVKA*VAR_DODAVKA_VYDEJNA+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MIN), (int)round(VAR_VYDEJNIMISTA_DODAVKA*VAR_DODAVKA_VYDEJNA+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MAX));
     printf("- %d - %d minut trvá dodávce trasa s boxem\n", (int)round((VAR_VYDEJNIMISTA_DODAVKA-1)*VAR_DODAVKA_VYDEJNA+VAR_DODAVKA_BOX+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MIN), (int)round((VAR_VYDEJNIMISTA_DODAVKA-1)*VAR_DODAVKA_VYDEJNA+VAR_DODAVKA_BOX+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MAX));
     printf("\n");
-    
+
 
     printf("Zaměstnanci\n");
     double VAR_ZAMESTNANCI_BEZRIDICU = (double)DAT_ZAMESTNANCI-DAT_DODAVKY-DAT_KAMIONY;
@@ -175,6 +176,7 @@ int main() // int argc, char *argv[]
     printf("\n");
     printf("\n");
 
+
     printf("Kamion (jeden zaměstnanec)\n");
     double VAR_KAMION_DOBA_NALOZENI = CONST_KAMION_DODAVEK*VAR_ZASILKY_DODAVKA_DEN*CONST_ZASILKA_NALOZENI/60;
     printf("- %.3f (+-%d) minut trvá naložení jednoho kamionu jedním zaměstnancem = %d dodávek rovná se jeden kamion * %.3f zásilek na dodávku na den * %d sekund trvá naložení jedné zásilky jedním zaměstnancem / 60 sekund\n", VAR_KAMION_DOBA_NALOZENI, CONST_DEPO_NAKLADANI_VYKLADANI_ROZPTYL, CONST_KAMION_DODAVEK, VAR_ZASILKY_DODAVKA_DEN, CONST_ZASILKA_NALOZENI);
@@ -199,11 +201,10 @@ int main() // int argc, char *argv[]
     printf("- %d - %d minut trvá cesta kamionu přes až %d dep (%d cesty)\n", CONST_KAMION_CESTA_DEPO_MIN, VAR_KAMION_PREPRAVA_DOBA_MAX, CONST_KAMION_CESTA_DEPA_MAX, CONST_KAMION_CESTA_DEPA_MAX-1);
     int VAR_KAMION_PREKLAD_DOBA_MAX = (int)round((CONST_KAMION_CESTA_DEPA_MAX-2)*(VAR_KAMIONY_DOBA_NALOZENI+VAR_KAMIONY_DOBA_VYLOZENI));
     printf("- 0 - %d minut trvá překlad kamionu na až %d depech (%d překlady)\n", VAR_KAMION_PREKLAD_DOBA_MAX, CONST_KAMION_CESTA_DEPA_MAX, CONST_KAMION_CESTA_DEPA_MAX-2);
-    
 
 
 
-	printf("\n\n\n");
+    printf("\n\n\n");
 
     printf("Návrh zadání:\n");
     printf("\n");
