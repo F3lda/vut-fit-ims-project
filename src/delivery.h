@@ -1,3 +1,6 @@
+#ifndef DELIVERY_H
+#define DELIVERY_H
+
 #include <simlib.h>
 #include <iostream>
 
@@ -6,52 +9,49 @@
 */
 class Delivery : public Process
 {
-private:
-    /*
-    * Sklad dodávek
-    */
-    Store *vans;
+    private:
+        /*
+        * Sklad dodávek
+        */
+        Store *vans;
 
-    /*
-    * Počet zásilek v dodávce
-    */
-    unsigned long *packages;
+        /*
+        * Statistika určující čas cesty na box
+        */
+        Stat *vanBoxRideTime;
 
-    /*
-    * Statistika určující čas cesty na box
-    */
-    Stat *vanBoxRideTime;
+        /*
+        * Statistika určující čas cesty na klasickou výdejnu
+        */
+        Stat *vanNonBoxRideTime;
 
-    /*
-    * Statistika určující čas cesty na klasickou výdejnu
-    */
-    Stat *vanNonBoxRideTime;
-
-    /*
-    * Statistika určující čas výkládání zásilky na výdejně/boxu
-    */
-    Stat *vanLoadToPointTime;
+        /*
+        * Statistika určující čas výkládání zásilky na výdejně/boxu
+        */
+        Stat *vanLoadToPointTime;
 
 
-    
-public:
-    /*
-    * Kontruktor
-    */
-    Delivery(unsigned long vans, double averagePackages, double packagesDeviation);
+        
+    public:
+        /*
+        * Kontruktor
+        */
+        Delivery(unsigned long vans, double averagePackages, double packagesDeviation);
 
-    /*
-    * Desktruktor
-    */
-    ~Delivery();
+        /*
+        * Desktruktor
+        */
+        ~Delivery();
 
-    /*
-    * behavior metoda
-    */
-    void Behavior() override;
+        /*
+        * behavior metoda
+        */
+        void Behavior() override;
 
-    /*
-    * Metoda výpočtu rovnoměrného rozdělení
-    */
-
+        /*
+        * Tisk informací na konci rozvážecí směny
+        */
+        void printDeliveryEnd();
 };
+
+#endif

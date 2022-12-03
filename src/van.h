@@ -1,8 +1,8 @@
 #ifndef TRUCK_H
 #define TRUCH_H
 
+#include <iostream>
 #include <simlib.h>
-#include "../zadani/main.c"
 
 
 class Van : public Process {
@@ -10,6 +10,12 @@ class Van : public Process {
         const double VAN_LOADING_TIME_AVERAGE = 30;
         const double VAN_UNLOADING_TIME_AVERAGE = 45;
         const double TRUCK_JOURNEY_TIME_BETWEEN_DROP_POINTS = 12.5; // 10-15 minut?
+        const double BOX_PROBABILITY = 0.695;
+
+        /*
+        * Počet zásilek v dodávce
+        */
+        unsigned long *packages;
 
         Store *vans;
 

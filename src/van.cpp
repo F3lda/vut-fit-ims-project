@@ -1,5 +1,6 @@
 #include "van.h"
 
+using namespace std;
 
 Van::Van(
 	Store *vans, 
@@ -17,8 +18,15 @@ Van::Van(
 
 void Van::Behavior()
 {
-	/*
-	* TODO: nějaké výpočty. Zeptat se Karla
-	*/
+	// Box nebo ne
+	if( Random() < BOX_PROBABILITY ) {
+		double rideTime = Uniform(392, 477);
+		(*vanNonBoxRideTime)(rideTime);
+		Wait(rideTime);
+	} else {
+		double rideTime = Uniform(389, 474);
+		(*vanBoxRideTime)(rideTime);
+		Wait(rideTime);
+	}
 	Leave(*vans, 1);
 }

@@ -12,5 +12,6 @@ DeliveryTimer::DeliveryTimer(Delivery *delivery)
 void DeliveryTimer::Behavior()
 {
     cout << "End of delivery shift because timer elapsed.\n\n";
+    // TODO: návratový čas dodávky po pracovní době
 	delete delivery;
 }
