@@ -36,7 +36,6 @@ void Delivery::Behavior() {
 }
 
 Delivery::~Delivery() {
-
     cout << "=======================================================================\n"
 		<< "Delivery DESTRUCTOR.\n"
 		<< "\tEnd Time: " << Time << ".\n"
@@ -49,6 +48,6 @@ Delivery::~Delivery() {
     cout << "=======================================================================\n"
 		<< "Statistics of ride to Deli Point\n" << endl;
     vanNonBoxRideTime->Output();
-    DepoWork *depo = new DepoWork(this->vans);
+    Depo *depo = new Depo(this->vans);
     depo->Activate();
 }

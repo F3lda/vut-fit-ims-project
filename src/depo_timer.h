@@ -10,7 +10,7 @@
 class DepoTimer : public Event
 {
 public:
-	DepoTimer(DepoWork *depo);
+	DepoTimer(Depo *depo);
 
 	void Behavior() override;
 
@@ -23,7 +23,7 @@ private:
 	/**
 	 * pracovní doba na depu od 16 do 8, bude zabit pokud uběhne DEPO_SHIFT_DURATION
 	 */
-	DepoWork *depo;
+	Depo *depo;
 };
 
 

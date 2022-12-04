@@ -6,24 +6,33 @@
 /*
 * Třída reprezentující práci v Depu od 16:00 do 8:00
 */
-class DepoWork : public Process {
+class Depo : public Process {
     private:
         /*
         * Sklad dodávek
         */
         Store *vans;
 
+        /*
+        * Sklad zaměstnanců
+        */
+        Store *workers;
+
+        /*
+        * Sklad balíků
+        */
+        Store *packages;
         
     public:
         /*
         * Kontruktor
         */
-        DepoWork(Store *vans);
+        Depo(Store *vans);
 
         /*
         * Desktruktor
         */
-        ~DepoWork();
+        ~Depo();
 
         /*
         * behavior metoda
