@@ -31,6 +31,7 @@
 
 // Další vstupní údaje (odhadnuté/vymyšlené)
 //-----------------
+#define CONST_PRACOVNI_DNY_ROK 255 // počet pracovních dnů v roce (https://vimjakna.cz/dny/pracovni-dny/)
 #define CONST_ZAMESTNANCI_DEPA_KOEFICIENT 0.666 // 2/3 ze všech zaměstnanců jsou na depech ve skladech
 #define CONST_ZASILKA_NALOZENI 30 // 30 sekund trvá naložení jedné zásilky jedním zaměstnancem
 #define CONST_ZASILKA_VYLOZENI 45 // 45 sekund trvá vyložení jedné zásilky jedním zaměstnancem
@@ -44,8 +45,7 @@
 #define CONST_DODAVKA_CESTA_MIN 10 // 10 minut - trvání cesty na další výdejní místo - minimum
 #define CONST_DODAVKA_CESTA_MAX 15 // 15 minut - trvání cesty na další výdejní místo - maximum
 #define CONST_DODAVKA_NAVRAT_MIN 15 // 15 minut - vynucený návrat z důvodu konce směny - minimum
-#define CONST_DODAVKA_NAVRAT_MAX 30 // 30 minut - vynucený návrat z důvodu konce směny - maximum
-//#define CONST_DODAVKA_KAPACITA_MAX 150 // 150 balíků/zásilek na dodávku
+#define CONST_DODAVKA_NAVRAT_MAX 45 // 45 minut - vynucený návrat z důvodu konce směny - maximum
 
 #define CONST_DEPO_NAKLADANI_VYKLADANI_ROZPTYL 10 // +- 10 minut - rozptyl pro čas na nakládání nebo vykládání zásilek z dodávky nebo kamionu
 
@@ -61,15 +61,15 @@ int main() // int argc, char *argv[]
     printf("\n");
     printf("Zásilkovna (statistika 2020)\n");
     printf("----------------------------\n");
-    printf("-> %d dep (skladů)\n", DAT_DEPA);
-    printf("-> %d kamionů mezi depy\n", DAT_KAMIONY);
-    printf("-> %d dodávek do výdejen\n", DAT_DODAVKY);
-    printf("-> %d výdejních míst\n", DAT_VYDEJNY);
-    printf("-> %d Z-Boxů\n", DAT_BOXY);
-    printf("-> %d zaměstnanců\n", DAT_ZAMESTNANCI);
-    printf("-> %d rozvezených zásilek\n", DAT_ZASILKY);
-    printf("-> %ld Kč obrat\n", DAT_OBRAT);
-    printf("-> REKORD: %d zásilek přepravených za jeden den (14. 12. 2020)\n", DAT_REKORD_ZASILKY);
+    printf("- %d dep (skladů)\n", DAT_DEPA);
+    printf("- %d kamionů mezi depy\n", DAT_KAMIONY);
+    printf("- %d dodávek do výdejen\n", DAT_DODAVKY);
+    printf("- %d výdejních míst\n", DAT_VYDEJNY);
+    printf("- %d Z-Boxů\n", DAT_BOXY);
+    printf("- %d zaměstnanců\n", DAT_ZAMESTNANCI);
+    printf("- %d rozvezených zásilek\n", DAT_ZASILKY);
+    printf("- %ld Kč obrat\n", DAT_OBRAT);
+    printf("- REKORD: %d zásilek přepravených za jeden den (14. 12. 2020)\n", DAT_REKORD_ZASILKY);
     printf("\n");
     printf("Zdroje:\n");
     printf("https://www.zasilkovna.cz/blog/packeta-v-roce-2020-zdvojnasobila-svuj-obrat\n");
@@ -82,22 +82,22 @@ int main() // int argc, char *argv[]
 
     printf("Odhadnutá data\n");
     printf("--------------\n");
-    printf("-> %f ze všech zaměstnanců je na depech ve skladech (koeficient)\n", CONST_ZAMESTNANCI_DEPA_KOEFICIENT);
-    printf("-> %d sekund trvá naložení jedné zásilky jedním zaměstnancem\n", CONST_ZASILKA_NALOZENI);
-    printf("-> %d sekund trvá vyložení jedné zásilky jedním zaměstnancem (vyložení trvá déle, protože je nutné zásilku správně zařadit/roztřídit)\n", CONST_ZASILKA_VYLOZENI);
-    printf("-> +-%d minut je rozptyl pro čas na nakládání nebo vykládání zásilek z dodávky nebo kamionu\n", CONST_DEPO_NAKLADANI_VYKLADANI_ROZPTYL);
+    printf("- %d dnů v roce je pracovních (Zdroj: https://vimjakna.cz/dny/pracovni-dny/ - přibližně)\n", CONST_PRACOVNI_DNY_ROK);
+    printf("- %f ze všech zaměstnanců je na depech ve skladech (koeficient)\n", CONST_ZAMESTNANCI_DEPA_KOEFICIENT);
+    printf("- %d sekund trvá naložení jedné zásilky jedním zaměstnancem\n", CONST_ZASILKA_NALOZENI);
+    printf("- %d sekund trvá vyložení jedné zásilky jedním zaměstnancem (vyložení trvá déle, protože je nutné zásilku správně zařadit/roztřídit)\n", CONST_ZASILKA_VYLOZENI);
+    printf("- +-%d minut je rozptyl pro čas na nakládání nebo vykládání zásilek z dodávky nebo kamionu\n", CONST_DEPO_NAKLADANI_VYKLADANI_ROZPTYL);
     printf("\n");
-    printf("-> 1 kamion = %d dodávek (objemově) (Zdroj: https://www.denik.cz/auto/svet-ridice-kamionu-neni-to-jednoducha-prace.html)\n", CONST_KAMION_DODAVEK);
-    printf("-> min %d minut trvá cesta kamionu na další depo\n", CONST_KAMION_CESTA_DEPO_MIN);
-    printf("-> max %d minut trvá cesta kamionu na další depo\n", CONST_KAMION_CESTA_DEPO_MAX);
-    printf("-> až %d dep může kamion navštívit na trase\n", CONST_KAMION_CESTA_DEPA_MAX);
+    printf("- 1 kamion = %d dodávek (objemově) (Zdroj: https://www.denik.cz/auto/svet-ridice-kamionu-neni-to-jednoducha-prace.html)\n", CONST_KAMION_DODAVEK);
+    printf("- min %d minut trvá cesta kamionu na další depo\n", CONST_KAMION_CESTA_DEPO_MIN);
+    printf("- max %d minut trvá cesta kamionu na další depo\n", CONST_KAMION_CESTA_DEPO_MAX);
+    printf("- až %d dep může kamion navštívit na trase\n", CONST_KAMION_CESTA_DEPA_MAX);
     printf("\n");
-    printf("-> min %d minut trvá cesta na další výdejní místo\n", CONST_DODAVKA_CESTA_MIN);
-    printf("-> max %d minut trvá cesta na další výdejní místo\n", CONST_DODAVKA_CESTA_MAX);
-    printf("-> min %d minut trvá vynucený návrat na depo z důvodu konce směny v 16:00\n", CONST_DODAVKA_NAVRAT_MIN);
-    printf("-> max %d minut trvá vynucený návrat na depo z důvodu konce směny v 16:00\n", CONST_DODAVKA_NAVRAT_MAX);
-    printf("-> %d minut je čas na režii na výdejním místě (papírování, svačina, záchod, povinná 30 minutová přestávka na oběd)\n", CONST_DODAVKA_REZIE);
-    //printf("-> %d zásilek je maximální kapacita dodávky\n", CONST_DODAVKA_KAPACITA_MAX);
+    printf("- min %d minut trvá cesta na další výdejní místo\n", CONST_DODAVKA_CESTA_MIN);
+    printf("- max %d minut trvá cesta na další výdejní místo\n", CONST_DODAVKA_CESTA_MAX);
+    printf("- min %d minut trvá vynucený návrat na depo z důvodu konce směny v 16:00\n", CONST_DODAVKA_NAVRAT_MIN);
+    printf("- max %d minut trvá vynucený návrat na depo z důvodu konce směny v 16:00\n", CONST_DODAVKA_NAVRAT_MAX);
+    printf("- %d minut je čas na režii na výdejním místě (papírování, svačina, záchod, povinná 30 minutová přestávka na oběd)\n", CONST_DODAVKA_REZIE);
     printf("\n");
     printf("\n");
     printf("\n");
@@ -118,11 +118,10 @@ int main() // int argc, char *argv[]
 
 
     printf("Zásilky\n");
-    double VAR_ZASILKY_DEN = (double)DAT_ZASILKY/365;
+    double VAR_ZASILKY_DEN = (double)DAT_ZASILKY/CONST_PRACOVNI_DNY_ROK;
     printf("- %.3f rozvezených zásilek za den = %d zásilek za rok / 365 dní v roce\n", VAR_ZASILKY_DEN, DAT_ZASILKY);
     double VAR_ZASILKY_DODAVKA_DEN = (double)(VAR_ZASILKY_DEN)/(DAT_DODAVKY+CONST_KAMION_DODAVEK*DAT_KAMIONY);
     printf("- %.3f zásilek na dodávku na den = %.3f zásilek na den / (%d dodávek + %d dodávek na kamion * %d kamionů)\n", VAR_ZASILKY_DODAVKA_DEN, VAR_ZASILKY_DEN, DAT_DODAVKY, CONST_KAMION_DODAVEK, DAT_KAMIONY);
-    //printf("- TODO - Kontrola kapacity dodávky (%.3f < %d)\n", VAR_ZASILKY_DEN, CONST_DODAVKA_KAPACITA_MAX);
     double VAR_ZASILKY_KAMION_DEN = (double)(VAR_ZASILKY_DODAVKA_DEN)*CONST_KAMION_DODAVEK;
     printf("- %.3f zásilek na kamion na den = %d dodávek na kamion * %.3f zásilek na dodávku na den\n", VAR_ZASILKY_KAMION_DEN, CONST_KAMION_DODAVEK, VAR_ZASILKY_DODAVKA_DEN);
     double VAR_ZASILKY_VYDEJNIMISTO_DEN = (double)(VAR_ZASILKY_DODAVKA_DEN)/VAR_VYDEJNIMISTA_DODAVKA;
@@ -208,16 +207,16 @@ int main() // int argc, char *argv[]
 
     printf("Návrh zadání:\n");
     printf("\n");
-    printf("Hypotetická přepravní společnost zásilek\n");
-    printf("----------------------------------------\n");
+    printf("Hypotetická přepravní společnost zásilek HYPSOZ\n");
+    printf("-----------------------------------------------\n");
     printf("\n");
-    printf("Logistická firma HYPSOZ sváží a rozváží kusové zásilky po celé České republice. Každý pracovní den začíná v 8:00 rozvozem a svozem zásilek dodávkami z výdejních míst. Dodávky jsou naplněny zásilkami k doručení již z předchozí pracovní směny. Firma s %d zaměstnanci operuje se %d kamiony pro převoz zásilek mezi %d depy a s %d dodávkami na svoz a rozvoz z dep na výdejní místa. Na každé depo připadá průměrně %d dodávek. Každá dodávka průměrně rozveze %d balíků a má na starosti %d výdejen a H-boxů. To vychází %d balíků na výdejní místo. Šance, že dodávka při své cestě navštíví i H-box je %.3f %% a %.3f %% je šance, že její trasa je pouze přes výdejny. Na pobočce dodávka stráví přibližně %d minut, kde je započítáno i %d minut na režii (do režie se např. počítá i povinná 30 minutová přestávka na oběd). U H-boxů dochází pouze k vyložení zásilek a dodávka zde stráví pouze %d minut i s režií. Cesta mezi výdejními místy trvá %d - %d minut. Dodávky se musí vrátit do 16:00 zpět do dep, kde dochází k vyložení svezených zásilek a řidičům dodávek končí směna. Pokud není dodávka v 16:00 zpět ve svém depu, řidič zanechá všeho a ihned se vrací zpět do svého depa, kam mu cesta trvá %d - %d minut.\n",
-    DAT_ZAMESTNANCI, DAT_KAMIONY, DAT_DEPA, DAT_DODAVKY, (int)round(VAR_DODAVKY_DEPO), (int)round(VAR_ZASILKY_DODAVKA_DEN), (int)round(VAR_VYDEJNIMISTA_DODAVKA), (int)round(VAR_ZASILKY_VYDEJNIMISTO_DEN), VAR_DODAVKA_SANCE_CESTA_BOX, VAR_DODAVKA_SANCE_CESTA_BEZBOX, (int)round(VAR_DODAVKA_VYDEJNA), (int)round(CONST_DODAVKA_REZIE), (int)round(VAR_DODAVKA_BOX), CONST_DODAVKA_CESTA_MIN, CONST_DODAVKA_CESTA_MAX, CONST_DODAVKA_NAVRAT_MIN, CONST_DODAVKA_NAVRAT_MAX);
+    printf("Logistická firma HYPSOZ sváží a rozváží kusové zásilky po celé České republice. Každý pracovní den začíná v 8:00 rozvozem a svozem zásilek dodávkami na a z výdejních míst. Dodávky jsou naplněny zásilkami k doručení již z předchozí pracovní směny. Firma s %d zaměstnanci operuje se %d kamiony pro převoz zásilek mezi %d depy a s %d dodávkami na svoz a rozvoz z dep na výdejní místa. Na každé depo připadá průměrně %d dodávek. Každá dodávka průměrně rozveze %d zásilek a má na starosti %d výdejen a H-boxů. To vychází %d zásilek na výdejní místo. Šance, že dodávka při své cestě navštíví i H-box je %.3f %% a %.3f %% je šance, že její trasa je pouze přes výdejny. Na pobočce dodávka stráví přibližně %d minut, kde je započítáno i %d minut na režii (do režie se např. počítá i povinná 30 minutová přestávka na oběd). U H-boxů dochází pouze k vyložení zásilek a dodávka zde stráví pouze %d minut i s režií. Cesta mezi výdejními místy trvá %d - %d minut. Trasa dodávky k výdejním místům tak trvá %d - %d minut nebo %d - %d minut pokud se na trase nachází H-box. Dodávky se musí vrátit do 16:00 zpět do dep, kde dochází k vyložení svezených zásilek a řidičům dodávek končí směna. Pokud není dodávka v 16:00 zpět ve svém depu, řidič zanechá všeho a ihned se vrací zpět do svého depa, kam mu cesta trvá %d - %d minut.\n",
+    DAT_ZAMESTNANCI, DAT_KAMIONY, DAT_DEPA, DAT_DODAVKY, (int)round(VAR_DODAVKY_DEPO), (int)round(VAR_ZASILKY_DODAVKA_DEN), (int)round(VAR_VYDEJNIMISTA_DODAVKA), (int)round(VAR_ZASILKY_VYDEJNIMISTO_DEN), VAR_DODAVKA_SANCE_CESTA_BOX, VAR_DODAVKA_SANCE_CESTA_BEZBOX, (int)round(VAR_DODAVKA_VYDEJNA), (int)round(CONST_DODAVKA_REZIE), (int)round(VAR_DODAVKA_BOX), CONST_DODAVKA_CESTA_MIN, CONST_DODAVKA_CESTA_MAX, (int)round(VAR_VYDEJNIMISTA_DODAVKA*VAR_DODAVKA_VYDEJNA+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MIN), (int)round(VAR_VYDEJNIMISTA_DODAVKA*VAR_DODAVKA_VYDEJNA+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MAX), (int)round((VAR_VYDEJNIMISTA_DODAVKA-1)*VAR_DODAVKA_VYDEJNA+VAR_DODAVKA_BOX+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MIN), (int)round((VAR_VYDEJNIMISTA_DODAVKA-1)*VAR_DODAVKA_VYDEJNA+VAR_DODAVKA_BOX+VAR_VYDEJNIMISTA_DODAVKA*CONST_DODAVKA_CESTA_MAX), CONST_DODAVKA_NAVRAT_MIN, CONST_DODAVKA_NAVRAT_MAX);
     printf("\n");
-    printf("Na depo připadá %d zaměstnanců, kteří po příjezdu všech dodávek z nich začínají vykládat a třídit zásilky. Vyložení jednoho balíku jedním zaměstnancem trvá %d sekund. Po vyložení všech dodávek začnou zaměstnanci nakládat roztříděné zásilky do kamionů. Naložení jednoho balíku jedním zaměstnancem trvá %d sekund.\n",
-    (int)round(VAR_ZAMESTNANCI_DEPO), CONST_ZASILKA_VYLOZENI, CONST_ZASILKA_NALOZENI);
+    printf("Na depo připadá %d zaměstnanců, kteří po příjezdu všech dodávek z nich začínají vykládat a třídit zásilky. Vyložení jedné zásilky jedním zaměstnancem trvá %d sekund. Po vyložení všech dodávek začnou zaměstnanci nakládat roztříděné zásilky do kamionů. Naložení jedné zásilky jedním zaměstnancem trvá %d sekund. Na jedno depo připadá %d kamionů a jeden uveze %d zásilek.\n",
+    (int)round(VAR_ZAMESTNANCI_DEPO), CONST_ZASILKA_VYLOZENI, CONST_ZASILKA_NALOZENI, (int)round(VAR_KAMIONY_DEPO), (int)round(VAR_ZASILKY_KAMION_DEN));
     printf("\n");
-    printf("Naložené kamiony na své trasu mohou jet až přes %d dep, kde složí nebo naloží část balíků. Tato cesta může trvat %d - %d minut. Překlad na depech na trase může trvat 0 - %d minut.\n",
+    printf("Naložené kamiony na své trasu mohou jet až přes %d dep, kde složí nebo naloží část zásilek. Tato cesta může trvat %d - %d minut. Překlad na depech na trase může trvat 0 - %d minut.\n",
     CONST_KAMION_CESTA_DEPA_MAX, CONST_KAMION_CESTA_DEPO_MIN, VAR_KAMION_PREPRAVA_DOBA_MAX, VAR_KAMION_PREKLAD_DOBA_MAX);
     printf("\n");
     printf("V posledním depu dojde k vyložení kamionu, které trvá %d (+- 10) minut. Poté dochází k nakládání dodávek pro další pracovní den, což trvá %d (+- 10) minut. Vše se musí stihnout do začátku další pracovní směny v 8:00 hodin.\n",
