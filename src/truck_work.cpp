@@ -2,9 +2,9 @@
 
 using namespace std;
 
-TruckWork::TruckWork(DepoLoad *depoLoad) {
+TruckWork::TruckWork(VanLoad *vanLoad) {
     this->trucks = new Store("Sklad kamionů", 4);
-	this->depoLoad = depoLoad;
+	this->vanLoad = vanLoad;
 }
 
 void TruckWork::Behavior() {
@@ -24,5 +24,5 @@ TruckWork::~TruckWork() {
 		<< "Truck shift ended.\n"
 		<< "\tEnd time: " << Time/60 << " hours.\n"
 		<< endl;
-	depoLoad->Activate();
+	vanLoad->Activate();
 }

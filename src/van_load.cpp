@@ -1,14 +1,14 @@
-#include "depo_load.h"
+#include "van_load.h"
 
 using namespace std;
 
-DepoLoad::DepoLoad(unsigned long van_count) {
+VanLoad::VanLoad(unsigned long van_count) {
     this->vans = new Store("Sklad dodávek", van_count);
     this->loadTime = new Stat("Čas nakládání");
 
 }
 
-void DepoLoad::Behavior() {
+void VanLoad::Behavior() {
     cout << "=======================================================================\n"
 		<< "Van load at depo shift started.\n"
 		<< "\tStart time: " << Time/60 << " hours\n"
@@ -22,7 +22,7 @@ void DepoLoad::Behavior() {
     Leave(*vans, 1);
 }
 
-DepoLoad::~DepoLoad() {
+VanLoad::~VanLoad() {
     cout << "=======================================================================\n"
 		<< "Van load at depo shift started.\n"
 		<< "\tEnd time: " << Time/60 << " hours.\n"
