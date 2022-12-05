@@ -13,7 +13,7 @@ int main() {
   cout << "# HYPSOZ --- model of delivery service" << endl;
 
   for (int i = 1; i <= CONS_ATTEMPTS_COUNT; i++) {
-      string filename = "hypsoz_" + to_string(i) + ".dat";
+      string filename = "data/hypsoz_" + to_string(i) + ".dat";
       SetOutput(filename.c_str());
       cout << "Trying simulation number " << i << endl;
       cout << "=======================================================================\n\n";

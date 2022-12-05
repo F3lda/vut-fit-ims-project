@@ -18,12 +18,16 @@ void VanLoad::Behavior() {
 		<< "\tStart time: " << Time/60 << " hours\n"
 		<< "\tNumber of vans: " << this->vans->Capacity() << ".\n"
 		<< endl;
-    Enter(*vans, 1);
-    double depoLoadTime = Uniform(CONST_VAN_LOAD_TIME_MIN, CONST_VAN_LOAD_TIME_MAX);
-    (*loadTime)(depoLoadTime);
-    Wait(depoLoadTime);
+    int vans_count = vans->Capacity();
+    while(vans_count > 0) {
+        Enter(*vans, 1);
+        vans_count--;
+        
+        (new Van(vans))->Activate();
+    }
 
-    Leave(*vans, 1);
+    Enter(*vans, vans->Capacity());
+    Leave(*vans, vans->Capacity());
 }
 
 VanLoad::~VanLoad() {

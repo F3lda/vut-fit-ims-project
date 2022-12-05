@@ -19,8 +19,17 @@ void TruckWork::Behavior() {
 		<< "\tStart time: " << Time/60 << " hours.\n"
 		<< "\tNumber of trucks: " << this->trucks->Capacity() << ".\n"
 		<< endl;
-    Enter(*trucks, 1);
-    (new Truck(trucks, trucksRideLength))->Activate();
+	
+	int truck_started = trucks->Capacity();
+	while(truck_started) {
+		truck_started--;
+
+		Enter(*trucks, 1);
+		//cout << "Truck start" << endl;
+
+    	(new Truck(trucks, trucksRideLength))->Activate();
+	}
+    
     Enter(*trucks, trucks->Capacity());
     Leave(*trucks, trucks->Capacity());
 }
