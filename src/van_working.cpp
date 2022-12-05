@@ -2,6 +2,7 @@
 
 #include "delivery_timer.h"
 #include "van_done.h"
+#include "common.h"
 
 
 
@@ -31,12 +32,12 @@ VanWorking::VanWorking(
 void VanWorking::Behavior()
 {
 	// Box nebo ne
-	if( Random() < BOX_PROBABILITY ) {
-		rideTime = Uniform(452, 537);
+	if( Random() < CONST_VAN_RIDE_BOX_PROBABILITY ) {
+		rideTime = Uniform(CONST_VAN_RIDE_NOBOX_MIN, CONST_VAN_RIDE_NOBOX_MAX);
 		(*vanNonBoxRideTime)(rideTime);
 		Wait(rideTime);
 	} else {
-		rideTime = Uniform(447, 532);
+		rideTime = Uniform(CONST_VAN_RIDE_BOX_MIN, CONST_VAN_RIDE_BOX_MAX);
 		(*vanBoxRideTime)(rideTime);
 		Wait(rideTime);
 	}

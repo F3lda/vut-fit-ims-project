@@ -5,6 +5,9 @@
 #include <simlib.h>
 #include "truck.h"
 #include "van_load.h"
+
+
+
 /*
 * Třída reprezentující práci kamionů po výkladu balíků v jednotlivých depech (od 16:00 do 8:00)
 */

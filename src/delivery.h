@@ -50,7 +50,7 @@ class Delivery : public Process
         /*
         * Kontruktor
         */
-        Delivery(unsigned long vans, double averagePackages, double packagesDeviation, Depo *depo);
+        Delivery(Depo *depo);
 
         /*
         * Desktruktor

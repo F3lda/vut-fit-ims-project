@@ -1,5 +1,9 @@
 #include "truck.h"
 
+#include "common.h"
+
+
+
 using namespace std;
 
 Truck::Truck(Store *trucks) {
@@ -10,13 +14,13 @@ Truck::Truck(Store *trucks) {
 }
 
 void Truck::Behavior() {
-    double truckTravelTime = Uniform(45, 480);
+    double truckTravelTime = Uniform(CONST_TRUCK_TRAVEL_TIME_MIN, CONST_TRUCK_TRAVEL_TIME_MAX);
     (*TRUCK_TRAVEL_BETWEEN_DEPOS_TIME)(truckTravelTime);
     Wait(truckTravelTime);
-    double truckWorkBetween = Uniform(0, 562);
+    double truckWorkBetween = Uniform(CONST_TRUCK_WORK_ON_WAY_TIME_MIN, CONST_TRUCK_WORK_ON_WAY_TIME_MAX);
     (*TRUCK_WORK_BETWEEN_DEPOS_TIME)(truckWorkBetween);
     Wait(truckWorkBetween);
-    double truckWorkLast = Uniform(107, 117);
+    double truckWorkLast = Uniform(CONST_TRUCK_UNLOAD_TIME_MIN, CONST_TRUCK_UNLOAD_TIME_MAX);
     (*TRUCK_WORK_AT_LAST_DEPO_TIME)(truckWorkLast);
     Wait(truckWorkLast);
 

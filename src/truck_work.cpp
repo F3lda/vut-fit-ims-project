@@ -1,9 +1,13 @@
 #include "truck_work.h"
 
+#include "common.h"
+
+
+
 using namespace std;
 
 TruckWork::TruckWork(VanLoad *vanLoad) {
-    this->trucks = new Store("Sklad kamionů", 4);
+    this->trucks = new Store("Sklad kamionů", CONST_TRUCKS);
 	this->vanLoad = vanLoad;
 }
 
@@ -20,9 +24,14 @@ void TruckWork::Behavior() {
 }
 
 TruckWork::~TruckWork() {
+	delete trucks;
+
     cout << "\n"
 		<< "Truck shift ended.\n"
 		<< "\tEnd time: " << Time/60 << " hours.\n"
 		<< endl;
+
+
+	
 	vanLoad->Activate();
 }

@@ -1,7 +1,7 @@
-
 #include "delivery_timer.h"
 
 #include "van_working.h"
+#include "common.h"
 
 
 
@@ -10,7 +10,7 @@ using namespace std;
 DeliveryTimer::DeliveryTimer(int *shiftState)
 {
     this->shiftState = shiftState;
-	Activate(Time + DELIVERY_SHIFT_DURATION);
+	Activate(Time + CONST_VANS_SHIFT_LENGTH);
 }
 
 int DeliveryTimer::getShiftState() {

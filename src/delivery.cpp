@@ -1,14 +1,16 @@
 #include "delivery.h"
+
 #include "delivery_timer.h"
+#include "common.h"
 
 
 
-Delivery::Delivery(unsigned long vans, double packagesAverage, double packagesDeviation, Depo *depo) {
+Delivery::Delivery(Depo *depo) {
 
     this->depo = depo;
 
     this->shiftState = new int();
-    this->vans_working = new Store("Van store", vans);
+    this->vans_working = new Store("Van store", CONST_VANS);
 
 
     vanBoxRideTime = new Stat("Total van ride distance to Box");

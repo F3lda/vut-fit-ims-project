@@ -1,5 +1,7 @@
 #include "van_done.h"
 
+#include "common.h"
+
 
 
 using namespace std;
@@ -19,11 +21,11 @@ void VanDone::Behavior()
 {
     // návrat ze z normální nebo zrušené směny
     if(shiftCanceled == 0) {
-        double rideTime = Uniform(10, 15);
+        double rideTime = Uniform(CONST_VAN_RETURN_RIDE_TIME_MIN, CONST_VAN_RETURN_RIDE_TIME_MAX);
 		(*vanReturnRideTime)(rideTime);
 		Wait(rideTime);
     } else {
-        double rideTime = Uniform(15, 45);
+        double rideTime = Uniform(CONST_VAN_CANCELED_RIDE_TIME_MIN, CONST_VAN_CANCELED_RIDE_TIME_MAX);
 		(*vanReturnRideTime)(rideTime);
 		Wait(rideTime);
     }

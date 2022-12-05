@@ -4,7 +4,8 @@
 #include <iostream>
 #include <simlib.h>
 
-// TODO: trucks
+
+
 class Truck : public Process {
     private:
         Store *trucks;
@@ -16,7 +17,6 @@ class Truck : public Process {
         Truck(Store *trucks);
 
         void Behavior();
-
 };
 
 #endif

@@ -1,6 +1,9 @@
 #include "worker.h"
+#include "common.h"
 
 using namespace std;
+
+
 
 Worker::Worker(Store *vehicles, Store *workers, long unsigned int *packages, int unloading) {
     this->vehicles = vehicles;
@@ -10,32 +13,29 @@ Worker::Worker(Store *vehicles, Store *workers, long unsigned int *packages, int
     this->unloading = unloading;
 }
 
-
 void Worker::Behavior() {
-    double unloadTime = 0.45;
-    double loadTime = 0.30;
     //(*workerWorkTime)(unloadTime);
 	
 
     if (unloading == 1) {
-        Wait(unloadTime);
+        Wait(CONST_EMPLOYEE_PACKET_UNLOAD_TIME);
 
         (*packages)++;
 
         // právě je jedna dodávka úplně vyložena
-        if ((*packages) == 157) { //packagesPerVan
+        if ((*packages) == CONST_VAN_CAPACITY) {
             (*packages) = 0;
             Leave(*vehicles, 1);
 
             cout << "Van fully unloaded" << endl;
         }
     } else {
-        Wait(loadTime);
+        Wait(CONST_EMPLOYEE_PACKET_LOAD_TIME);
 
         (*packages)++;
 
         // právě je jedna dodávka úplně vyložena
-        if ((*packages) == (6*157)) { //packagesPerTruck
+        if ((*packages) == CONST_TRUCK_CAPACITY) {
             (*packages) = 0;
             Leave(*vehicles, 1);
 

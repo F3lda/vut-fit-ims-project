@@ -4,6 +4,8 @@
 #include <simlib.h>
 #include "truck_work.h"
 
+
+
 /*
 * Třída reprezentující práci v Depu od 16:00 do 8:00
 */
@@ -33,7 +35,7 @@ class Depo : public Process {
         /*
         * Kontruktor
         */
-        Depo(unsigned long van_count, TruckWork *truckWork);
+        Depo(TruckWork *truckWork);
 
         /*
         * Desktruktor
@@ -44,11 +46,6 @@ class Depo : public Process {
         * behavior metoda
         */
         void Behavior() override;
-
-        /*
-        * Tisk informací na konci rozvážecí směny
-        */
-        void printDepoEnd();
 };
 
 #endif

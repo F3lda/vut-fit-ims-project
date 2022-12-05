@@ -6,6 +6,7 @@
 #include "depo.h"
 
 
+
 class Worker : public Process {
     private:
         /*
@@ -22,13 +23,11 @@ class Worker : public Process {
         int unloading;
 
     public:
-
         Worker(Store *vehicles, Store *workers, long unsigned int *packages, int unloading);
 
         void Behavior() override;
 
         double averageUniformDistribution(double average, double deviation);
-
 };
 
 #endif

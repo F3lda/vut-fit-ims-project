@@ -20,20 +20,9 @@ public:
 	int addVan(void *van);
 
 private:
-	/**
-	 * Směna rozvozu (8 hodin).
-	 */
-	const double DELIVERY_SHIFT_DURATION = 8.0 * 60.0;
-
-	/**
-	 * Work shift process which will be killed
-	 * after work shift duration.
-	 */
-
 	int *shiftState;
 
 	std::vector<void*> vansList;
-
 };
 
 #endif
