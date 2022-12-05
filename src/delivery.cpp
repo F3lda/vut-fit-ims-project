@@ -29,11 +29,17 @@ void Delivery::Behavior() {
         Enter(*vans, 1);
         vans_started--;
         cout << "Van Start" << endl;
-        Van *van = new Van(vans, vanBoxRideTime, vanNonBoxRideTime, vanLoadToPointTime, state);
+        Van *van = new Van(vans, vanBoxRideTime, vanNonBoxRideTime, vanLoadToPointTime, state, this, deliveryTimer);
         vans_list.push_back(van);
         van->Activate();
     }
     cout << "While DONE" << endl;
+    /*for(Van *van : vans_list) {
+        
+        van->Cancel();        
+        //delete van;
+        cout << vans_list.size() << " Delete\n\n";
+    }*/
     Enter(*vans, vans->Capacity());
     Leave(*vans, vans->Capacity());
     cout << "WAIT DONE" << endl;

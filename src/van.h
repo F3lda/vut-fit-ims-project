@@ -5,6 +5,8 @@
 #include <vector>
 #include "delivery.h"
 
+class DeliveryTimer;
+
 class Van : public Process {
     private:
         const double VAN_LOADING_TIME_AVERAGE = 30;
@@ -23,7 +25,8 @@ class Van : public Process {
         Stat *vanNonBoxRideTime;
         Stat *vanLoadTime;
         int *state;
-        //Delivery *delivery;
+        Delivery *delivery;
+        DeliveryTimer *delivery_timer;
         //vector<Van*> *vans_list;
 
     public:
@@ -33,7 +36,9 @@ class Van : public Process {
             Stat *vanBoxRideTime, 
             Stat *vanNonBoxRideTime,
             Stat *vanLoadTime,
-            int *state
+            int *state,
+            Delivery *delivery,
+            DeliveryTimer *delivery_timer
             //vector<Van*> *vans_list
         );
 

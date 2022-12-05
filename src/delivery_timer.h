@@ -5,12 +5,20 @@
 #include <simlib.h>
 #include "delivery.h"
 
+class Van;
+
 class DeliveryTimer : public Event
 {
 public:
 	DeliveryTimer(Delivery *delivery, int *state);
 
 	void Behavior() override;
+
+	int getState();
+
+	
+	int deleteVan(Van *van);
+	int addVan(Van *van);
 
 private:
 	/**
@@ -25,6 +33,10 @@ private:
 	Delivery *delivery;
 
 	int *state;
+
+	int status = 0;
+
+	vector<Van*> vans_list;
 
 };
 
