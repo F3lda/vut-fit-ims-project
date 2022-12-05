@@ -22,9 +22,12 @@ class Depo : public Process {
         /*
         * Sklad balíků
         */
-        Store *packages;
+        Store *trucks;
 
         TruckWork *truckWork;
+
+        unsigned long *unloaded_packages;
+        unsigned long *loaded_packages;
         
     public:
         /*

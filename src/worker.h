@@ -11,17 +11,19 @@ class Worker : public Process {
         /*
         * Počet zásilek v dodávce
         */
-        Store *vans;
+        Store *vehicles;
 
         Store *workers;
 
         Stat *workerWorkTime;
 
-        Depo *depo;
+        long unsigned int *packages;
+
+        int unloading;
 
     public:
 
-        Worker(Store *vans,Store *workers, Depo *depo);
+        Worker(Store *vehicles, Store *workers, long unsigned int *packages, int unloading);
 
         void Behavior() override;
 

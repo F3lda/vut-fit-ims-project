@@ -85,4 +85,3 @@ Delivery::~Delivery() {
     // Start Depo Shift
     depo->Activate();
 }
-
