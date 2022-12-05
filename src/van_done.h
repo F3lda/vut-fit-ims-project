@@ -5,7 +5,9 @@
 #include <simlib.h>
 
 
-
+/*
+* Třída reprezentující práci jedné dodávky při vykládání zásilek z dodávky
+*/
 class VanDone : public Process {
     private:
         Store *vans_working;

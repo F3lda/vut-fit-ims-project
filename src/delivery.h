@@ -11,10 +11,10 @@
 
 
 using namespace std;
-/*
-* Třída reprezentující směnu dodávek od 8 do 16
-*/
 
+/*
+* Třída reprezentující směnu práci dodávek od 8 do 16
+*/
 class Delivery : public Process
 {
     private:

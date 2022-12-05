@@ -7,7 +7,7 @@
 
 
 /*
-* Třída reprezentující práci v Depu od 16:00 do 8:00
+* Třída reprezentující práci výkládání zásilek z dodávek v Depu
 */
 class Depo : public Process {
     private:
@@ -34,19 +34,10 @@ class Depo : public Process {
         double StartTime;
         
     public:
-        /*
-        * Kontruktor
-        */
         Depo(TruckWork *truckWork);
 
-        /*
-        * Desktruktor
-        */
         ~Depo();
 
-        /*
-        * behavior metoda
-        */
         void Behavior() override;
 };
 

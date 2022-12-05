@@ -1,6 +1,9 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+/**
+ * Soubor obsahující konstanty pro simulaci
+ */
 
 // Počet pokusů simulace
 #define CONS_ATTEMPTS_COUNT 5

@@ -6,7 +6,10 @@
 #include "depo.h"
 
 
-
+/*
+* Třída reprezentující zaměstnance a jeho práci
+* Používá se u výkládání dodávek a nakládání kamionů
+*/
 class Worker : public Process {
     private:
         /*

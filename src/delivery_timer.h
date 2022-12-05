@@ -7,7 +7,9 @@
 #include <vector>
 
 
-
+/*
+* Třída reprezentující časovač pro konec směny řidičů dodávek
+*/
 class DeliveryTimer : public Event
 {
 public:

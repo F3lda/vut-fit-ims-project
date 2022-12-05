@@ -9,16 +9,20 @@
 
 
 /*
-* Třída reprezentující práci kamionů po výkladu balíků v jednotlivých depech (od 16:00 do 8:00)
+* Třída reprezentující práci kamionů po nakládání balíků do kamionů (depo.h/cpp)
 */
 class TruckWork : public Process {
     private:
         Store *trucks;
+
         VanLoad *vanLoad;
+
         Stat *trucksRideLength;
     public:
         TruckWork(VanLoad *vanLoad);
+
         void Behavior();
+        
         ~TruckWork();
 };
 
