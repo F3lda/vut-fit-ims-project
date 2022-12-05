@@ -1,12 +1,21 @@
 #ifndef TRUCK_H
 #define TRUCH_H
 
-#pragma once
+#include <iostream>
 #include <simlib.h>
-#include "../zadani/main.c"
 
 // TODO: trucks
 class Truck : public Process {
+    private:
+        Store *trucks;
+        Stat *TRUCK_TRAVEL_BETWEEN_DEPOS_TIME;
+        Stat *TRUCK_WORK_BETWEEN_DEPOS_TIME;
+        Stat *TRUCK_WORK_AT_LAST_DEPO_TIME;
+
+    public:
+        Truck(Store *trucks);
+
+        void Behavior();
 
 };
 
