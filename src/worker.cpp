@@ -14,7 +14,8 @@ Worker::Worker(Store *vehicles, Store *workers, long unsigned int *packages, int
 
 void Worker::Behavior() {
     if (unloading == 1) {
-        Wait(CONST_EMPLOYEE_PACKET_UNLOAD_TIME);
+        double unloadTime = Uniform(CONST_EMPLOYEE_PACKET_UNLOAD_TIME_MIN, CONST_EMPLOYEE_PACKET_UNLOAD_TIME_MAX);
+        Wait(unloadTime);
 
         (*packages)++;
 
@@ -23,10 +24,11 @@ void Worker::Behavior() {
             (*packages) = 0;
             Leave(*vehicles, 1);
 
-            cout << "Van fully unloaded" << endl;
+            //cout << "Van fully unloaded" << endl;
         }
     } else {
-        Wait(CONST_EMPLOYEE_PACKET_LOAD_TIME);
+        double loadTime = Uniform(CONST_EMPLOYEE_PACKET_LOAD_TIME_MIN, CONST_EMPLOYEE_PACKET_LOAD_TIME_MAX);
+        Wait(loadTime);
 
         (*packages)++;
 
@@ -35,7 +37,7 @@ void Worker::Behavior() {
             (*packages) = 0;
             Leave(*vehicles, 1);
 
-            cout << "Truck fully loaded" << endl;
+            //cout << "Truck fully loaded" << endl;
         }
     }
 

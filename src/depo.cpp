@@ -21,7 +21,8 @@ Depo::Depo(TruckWork *truckWork) {
 void Depo::Behavior() {
     StartTime = Time;
 
-    cout << "=======================================================================\n"
+    cout << "\nSimulating work at depo.\n"
+        << "=======================================================================\n"
 		<< "Depo shift started.\n"
 		<< "\tStart time: " << Time << " minutes.\n"
 		<< "\tNumber of vans: " << vans->Capacity() << ".\n"
@@ -56,7 +57,7 @@ void Depo::Behavior() {
             //---
             unloading_vans++;
 
-            cout << unloading_vans <<" Van unloading" << endl;
+            //cout << unloading_vans <<" Van unloading" << endl;
         }
     }
     
@@ -109,7 +110,7 @@ void Depo::Behavior() {
             //---
             loading_trucks++;
 
-            cout << loading_trucks <<" Van unloading" << endl;
+            //cout << loading_trucks <<" Van unloading" << endl;
         }
     }
     

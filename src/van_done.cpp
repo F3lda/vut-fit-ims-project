@@ -32,6 +32,6 @@ void VanDone::Behavior()
 }
 
 VanDone::~VanDone() {
-	cout << "VAN AT DEPO! At time: " << Time  << endl;
+	//cout << "VAN AT DEPO! At time: " << Time  << endl;
 	Leave(*vans_working, 1);
 }

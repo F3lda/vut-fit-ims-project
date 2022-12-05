@@ -52,10 +52,10 @@ VanWorking::~VanWorking() {
 	if (*state == 1) {
 		(*vanCanceledRemainingTime)(rideTime-Time);
 
-		cout << "VAN SHIFT CANCELED! At time: " << Time  << endl;
+		//cout << "VAN SHIFT CANCELED! At time: " << Time  << endl;
 		(new VanDone(vans_working, 1, vanReturnRideTime))->Activate();
 	} else {
-		cout << "VAN DONE IN TIME! At time: " << Time  << endl;
+		//cout << "VAN DONE IN TIME! At time: " << Time  << endl;
 		(new VanDone(vans_working, 0, vanReturnRideTime))->Activate();
 	}
 }

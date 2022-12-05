@@ -9,27 +9,33 @@ using namespace std;
 TruckWork::TruckWork(VanLoad *vanLoad) {
     this->trucks = new Store("Sklad kamionů", CONST_TRUCKS);
 	this->vanLoad = vanLoad;
+	trucksRideLength = new Stat("Total trucks length during shift");
 }
 
 void TruckWork::Behavior() {
-    cout << "=======================================================================\n"
+    cout << "\nSimulating work of trucks.\n" 
+		<< "=======================================================================\n"
 		<< "Truck shift started.\n"
 		<< "\tStart time: " << Time/60 << " hours.\n"
 		<< "\tNumber of trucks: " << this->trucks->Capacity() << ".\n"
 		<< endl;
     Enter(*trucks, 1);
-    (new Truck(trucks))->Activate();
+    (new Truck(trucks, trucksRideLength))->Activate();
     Enter(*trucks, trucks->Capacity());
     Leave(*trucks, trucks->Capacity());
 }
 
 TruckWork::~TruckWork() {
-	delete trucks;
 
     cout << "\n"
 		<< "Truck shift ended.\n"
-		<< "\tEnd time: " << Time/60 << " hours."
+		<< "\tEnd time: " << Time/60 << " hours.\n"
+		<< "======================================================================="
 		<< endl;
+	trucksRideLength->Output();
+
+	delete trucks;
+	delete trucksRideLength;
 
 
 	

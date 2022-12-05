@@ -13,8 +13,8 @@ Delivery::Delivery(Depo *depo) {
     this->vans_working = new Store("Van store", CONST_VANS);
 
 
-    vanBoxRideTime = new Stat("Total van ride distance to Box");
-    vanNonBoxRideTime = new Stat("Total van ride distance to Deli point");
+    vanBoxRideTime = new Stat("Van ride distance to Box");
+    vanNonBoxRideTime = new Stat("Van ride distance to Deli point");
     vanCanceledRemainingTime = new Stat("Remaining time when shift canceled");
     vanReturnRideTime = new Stat("Return to depot");
     // Počet van který to stihly a nestihly (s boxem a bez boxu)
@@ -40,7 +40,7 @@ void Delivery::Behavior() {
         vans_started--;
         
         Enter(*vans_working, 1);
-        cout << "Van Start" << endl;
+        //cout << "Van Start" << endl;
 
         (new VanWorking(vans_working, shiftState, deliveryTimer, vanBoxRideTime, vanNonBoxRideTime, vanCanceledRemainingTime, vanReturnRideTime))->Activate();
         
@@ -60,7 +60,7 @@ Delivery::~Delivery() {
 
 
     cout << "-----------------------------------------------------------------------\n"
-		<< "Delivery DESTRUCTOR.\n"
+		<< "Delivery shift end.\n"
 		<< "\tEnd Time: " << Time << ".\n"
 		<< "\tTotal van ride distance to Box: " << vanBoxRideTime->Sum() << " minutes.\n"
     << "\tTotal van ride distance to Deli Point: " << vanNonBoxRideTime->Sum() << " minutes.\n"
@@ -75,7 +75,7 @@ Delivery::~Delivery() {
     vanCanceledRemainingTime->Output();
     //cout << "=======================================================================\n" << endl;
     vanReturnRideTime->Output();
-    cout << "=======================================================================" << endl;
+    //cout << "=======================================================================" << endl;
     
     delete vanBoxRideTime;
     delete vanNonBoxRideTime;

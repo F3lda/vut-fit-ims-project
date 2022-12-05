@@ -12,9 +12,10 @@ class Truck : public Process {
         Stat *TRUCK_TRAVEL_BETWEEN_DEPOS_TIME;
         Stat *TRUCK_WORK_BETWEEN_DEPOS_TIME;
         Stat *TRUCK_WORK_AT_LAST_DEPO_TIME;
+        Stat *trucksRideLength;
 
     public:
-        Truck(Store *trucks);
+        Truck(Store *trucks, Stat *trucksRideLength);
 
         void Behavior();
 };

@@ -15,6 +15,7 @@ class TruckWork : public Process {
     private:
         Store *trucks;
         VanLoad *vanLoad;
+        Stat *trucksRideLength;
     public:
         TruckWork(VanLoad *vanLoad);
         void Behavior();

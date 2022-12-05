@@ -1,3 +1,4 @@
+#include <string>
 #include <simlib.h>
 #include "delivery.h"
 #include "depo.h"
@@ -6,15 +7,16 @@
 #include "common.h"
 
 
-
 using namespace std;
 
 int main() {         
   cout << "# HYPSOZ --- model of delivery service" << endl;
-  //SetOutput("hypsoz.dat");
+
   for (int i = 1; i <= CONS_ATTEMPTS_COUNT; i++) {
+      string filename = "hypsoz_" + to_string(i) + ".dat";
+      SetOutput(filename.c_str());
       cout << "Trying simulation number " << i << endl;
-      cout << "=======================================================================\n";
+      cout << "=======================================================================\n\n";
       cout << "Simulating delivery shift from 8 to 16" << endl;
       Init(0);
 
@@ -26,8 +28,11 @@ int main() {
       
       Run();
       cout << "=======================================================================\n";
-      cout << "Ending simulation number " << i << endl;
-      SIMLIB_statistics.Output();
+      cout << "Ending simulation number " << i << "\n\n" << endl;
+
+      cout << "******************************************************************************\n"
+          << "******************************************************************************\n\n";
+      //SIMLIB_statistics.Output();
   }
   return 0;
 }
