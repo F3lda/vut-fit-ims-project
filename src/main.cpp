@@ -2,6 +2,7 @@
 #include "delivery.h"
 #include "depo.h"
 #include "truck_work.h"
+#include "depo_load.h"
 
 const int TRIALS = 5;
 
@@ -16,7 +17,8 @@ int main() {
       cout << "=======================================================================\n";
       cout << "Simulating delivery shift from 8 to 16" << endl;
       Init(0);
-      TruckWork *truckWork = new TruckWork();
+      DepoLoad *depoLoad = new DepoLoad(13);
+      TruckWork *truckWork = new TruckWork(depoLoad);
       Depo *depo = new Depo(13, truckWork);
       Delivery *del = new Delivery(13, 109, 0, depo);
 

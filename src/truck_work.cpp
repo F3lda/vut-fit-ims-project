@@ -2,14 +2,15 @@
 
 using namespace std;
 
-TruckWork::TruckWork() {
+TruckWork::TruckWork(DepoLoad *depoLoad) {
     this->trucks = new Store("Sklad kamionů", 4);
+	this->depoLoad = depoLoad;
 }
 
 void TruckWork::Behavior() {
     cout << "=======================================================================\n"
 		<< "Truck shift started.\n"
-		<< "\tStart time: " << Time << ".\n"
+		<< "\tStart time: " << Time/60 << " hours.\n"
 		<< "\tNumber of trucks: " << this->trucks->Capacity() << ".\n"
 		<< endl;
     Enter(*trucks, 1);
@@ -19,9 +20,9 @@ void TruckWork::Behavior() {
 }
 
 TruckWork::~TruckWork() {
-    cout << "=======================================================================\n"
+    cout << "\n"
 		<< "Truck shift ended.\n"
 		<< "\tEnd time: " << Time/60 << " hours.\n"
-		<< "\tNumber of trucks: " << this->trucks->Capacity() << ".\n"
 		<< endl;
+	depoLoad->Activate();
 }
