@@ -19,7 +19,6 @@ int main() {
       Delivery *del = new Delivery(13, 109, 0, depo);
       del->Activate();
       
-      //depo->Activate();
       Run();
       cout << "=======================================================================\n";
       cout << "Ending simulation number " << i << endl;

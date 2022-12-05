@@ -1,47 +1,49 @@
 #include "delivery.h"
-#include "van.h"
+#include "delivery_timer.h"
+
 
 Delivery::Delivery(unsigned long vans, double packagesAverage, double packagesDeviation, Depo *depo) {
-    this->vans = new Store("Van store", vans);
     this->depo = depo;
+
+    this->shiftState = new int();
+    
+    this->vans_working = new Store("Van store", vans);
+    this->vans_return = new Store("Vans return", vans);
+    this->vans_cancel = new Store("Vans cancel", vans);
+    this->vans_done = new Store("Vans done", vans);
+
+
     vanBoxRideTime = new Stat("Total van ride distance to Box");
     vanNonBoxRideTime = new Stat("Total van ride distance to Deli point");
     vanLoadToPointTime = new Stat("Package loading time");
-    //this->deliveryTimer = new DeliveryTimer(this);
-
-    this->vans_return = new Store("Vans return", vans);
+  
 
     cout << "=======================================================================\n"
 		<< "Delivery shift started.\n"
 		<< "\tStart time: " << Time << ".\n"
-		<< "\tNumber of vans: " << this->vans->Capacity() << ".\n"
+		<< "\tNumber of vans: " << this->vans_working->Capacity() << ".\n"
 		<< endl;
-
-    this->state = new int();
 }
 
 void Delivery::Behavior() {
 
-    DeliveryTimer *deliveryTimer = new DeliveryTimer(this, state);
+    DeliveryTimer *deliveryTimer = new DeliveryTimer(shiftState);
+   
     // Next event
-    int vans_started = vans->Capacity();
+    int vans_started = vans_working->Capacity();
     while(vans_started > 0) {
-        Enter(*vans, 1);
         vans_started--;
-        cout << "Van Start" << endl;
-        Van *van = new Van(vans, vanBoxRideTime, vanNonBoxRideTime, vanLoadToPointTime, state, this, deliveryTimer);
-        vans_list.push_back(van);
-        van->Activate();
-    }
-    cout << "While DONE" << endl;
-    /*for(Van *van : vans_list) {
         
-        van->Cancel();        
-        //delete van;
-        cout << vans_list.size() << " Delete\n\n";
-    }*/
-    Enter(*vans, vans->Capacity());
-    Leave(*vans, vans->Capacity());
+        Enter(*vans_working, 1);
+        cout << "Van Start" << endl;
+
+        (new Van(vans_working, vanBoxRideTime, vanNonBoxRideTime, vanLoadToPointTime, shiftState, deliveryTimer))->Activate();
+        
+    }
+
+    cout << "While DONE" << endl;
+    Enter(*vans_working, vans_working->Capacity());
+    Leave(*vans_working, vans_working->Capacity());
     cout << "WAIT DONE" << endl;
     //
     // Začátek směny u depa
@@ -49,10 +51,13 @@ void Delivery::Behavior() {
 }
 
 Delivery::~Delivery() {
-    //delete deliveryTimer;
 
-    //delete vans;
+    delete shiftState;
+    delete vans_working;
     delete vans_return;
+    delete vans_cancel;
+    delete vans_done;
+
 
     cout << "=======================================================================\n"
 		<< "Delivery DESTRUCTOR.\n"
@@ -71,10 +76,12 @@ Delivery::~Delivery() {
     delete vanNonBoxRideTime;
     delete vanLoadToPointTime;
     */
-   /*
+    /*
     for(Van *van : vans_list) {
       delete van;
     }*/
-    depo->Activate();
+
+    
+    //depo->Activate();
 }
 

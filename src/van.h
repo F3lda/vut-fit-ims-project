@@ -2,10 +2,7 @@
 #define TRUCH_H
 #include <iostream>
 #include <simlib.h>
-#include <vector>
-#include "delivery.h"
 
-class DeliveryTimer;
 
 class Van : public Process {
     private:
@@ -25,9 +22,7 @@ class Van : public Process {
         Stat *vanNonBoxRideTime;
         Stat *vanLoadTime;
         int *state;
-        Delivery *delivery;
-        DeliveryTimer *delivery_timer;
-        //vector<Van*> *vans_list;
+        void *delivery_timer;
 
     public:
         static const long VAN_CAPACITY = 157; //viz zadani
@@ -37,9 +32,7 @@ class Van : public Process {
             Stat *vanNonBoxRideTime,
             Stat *vanLoadTime,
             int *state,
-            Delivery *delivery,
-            DeliveryTimer *delivery_timer
-            //vector<Van*> *vans_list
+            void *delivery_timer
         );
 
         void Behavior() override;

@@ -1,6 +1,6 @@
 #include "depo.h"
 #include "depo_timer.h"
-#include "van.h"
+//#include "van.h"
 #include "worker.h"
 
 using namespace std;
@@ -20,7 +20,7 @@ void Depo::Behavior() {
 		<< endl;
 	//DepoTimer *depoTimer = new DepoTimer(this);
 	// Next event
-    unsigned long packages = this->vans->Capacity() * Van::VAN_CAPACITY;
+    unsigned long packages = this->vans->Capacity() * 157;//156;
     unsigned long unloading_packages = 0;
     unsigned long unloaded_packages = 0;
     cout << packages << endl;
@@ -35,7 +35,7 @@ void Depo::Behavior() {
         unloading_packages++;
         packages--;
 
-        if (unloading_packages == Van::VAN_CAPACITY) {
+        if (unloading_packages == 157) {//Van::VAN_CAPACITY;
             cout << unloading_vans <<" Van unloading" << endl;
             unloading_packages = 0;
             unloading_vans += 1;
@@ -47,7 +47,7 @@ void Depo::Behavior() {
         unloaded_packages++;
         
         //cout << unloaded << endl;
-        if (unloaded_packages == Van::VAN_CAPACITY) {
+        if (unloaded_packages == 157) {//Van::VAN_CAPACITY;
             cout << "Van fully unloaded" << endl;
             unloaded_packages = 0;
             empty_vans += 1;

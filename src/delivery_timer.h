@@ -2,23 +2,22 @@
 #ifndef DELIVERYTIMER_H
 #define DELIVERYTIMER_H
 
+#include <iostream>
 #include <simlib.h>
-#include "delivery.h"
+#include <vector>
 
-class Van;
+
 
 class DeliveryTimer : public Event
 {
 public:
-	DeliveryTimer(Delivery *delivery, int *state);
+	DeliveryTimer(int *state);
 
 	void Behavior() override;
 
-	int getState();
-
-	
-	int deleteVan(Van *van);
-	int addVan(Van *van);
+	int getShiftState();
+	int deleteVan(void *van);
+	int addVan(void *van);
 
 private:
 	/**
@@ -30,15 +29,11 @@ private:
 	 * Work shift process which will be killed
 	 * after work shift duration.
 	 */
-	Delivery *delivery;
 
-	int *state;
+	int *shiftState;
 
-	int status = 0;
-
-	vector<Van*> vans_list;
+	std::vector<void*> vansList;
 
 };
-
 
 #endif

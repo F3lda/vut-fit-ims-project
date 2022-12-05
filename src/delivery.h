@@ -1,10 +1,12 @@
-#include "delivery_timer.h"
+
 #ifndef DELIVERY_H
 #define DELIVERY_H
 
 #include <simlib.h>
 #include <iostream>
 #include <vector>
+
+#include "van.h"
 #include "depo.h"
 
 using namespace std;
@@ -12,16 +14,17 @@ using namespace std;
 * Třída reprezentující směnu dodávek od 8 do 16
 */
 
-class Van;
-
 class Delivery : public Process
 {
     private:
+        Depo *depo;
+
+        int *shiftState;
+
         /*
         * Sklad dodávek
         */
-        Store *vans;
-
+        Store *vans_working;
 
         Store *vans_return;
 
@@ -44,11 +47,6 @@ class Delivery : public Process
         */
         Stat *vanLoadToPointTime;
 
-        Depo *depo;
-
-        //DeliveryTimer *deliveryTimer;
-
-        int *state;
         
     public:
         /*
@@ -65,15 +63,6 @@ class Delivery : public Process
         * behavior metoda
         */
         void Behavior() override;
-
-        /*
-        * Tisk informací na konci rozvážecí směny
-        */
-        void printDeliveryEnd();
-
-        vector<Van*> vans_list;
-
-        int removeVan(Van van);
 };
 
 #endif

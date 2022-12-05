@@ -1,6 +1,7 @@
 #include "van.h"
-#include "delivery.h"
+
 #include "delivery_timer.h"
+
 using namespace std;
 
 Van::Van(
@@ -9,20 +10,16 @@ Van::Van(
     Stat *vanNonBoxRideTime, 
     Stat *vanLoadTime,
 	int *state,
-	Delivery *delivery,
-	DeliveryTimer *delivery_timer
-	//vector<Van*> *vans_list
+	void *delivery_timer
 ) :
 	vans_return(vans_return),
 	vanBoxRideTime(vanBoxRideTime),
 	vanNonBoxRideTime(vanNonBoxRideTime),
 	vanLoadTime(vanLoadTime),
 	state(state),
-	delivery(delivery),
 	delivery_timer(delivery_timer)
-	//vans_list(vans_list)
 {
-	delivery_timer->addVan(this);
+	((DeliveryTimer *)delivery_timer)->addVan(this);
 }
 
 
@@ -38,33 +35,26 @@ void Van::Behavior()
 		(*vanBoxRideTime)(rideTime);
 		Wait(rideTime);
 	}
-	//while (delivery_timer->getState() == 1) {
-	//	Wait(1000);
-	//}
 }
 
 Van::~Van() {
+	cout << "STATE: " << *state << endl;
 	if (*state == 0) {
-		delivery_timer->deleteVan(this);
-
-		//cout << "STATE: " << delivery_timer->getState()  << endl;
+		((DeliveryTimer *)delivery_timer)->deleteVan(this);
 	}
-	/*int i = 0;
-	for(Van *van : delivery->vans_list) {
-        if(van == this) {
-			//delivery->vans_list.erase(this);
-			cout << i << "DELETE!" << delivery->vans_list.size() << endl;
-			//delivery->vans_list.erase(delivery->vans_list.begin() + i);
-			break;
-		}
-		i++;
-    }*/
-	Leave(*vans_return, 1);
+
 	if (*state == 1) {
 		cout << "VAN GO HOME!" << Time  << endl;
+		double rideTime = Uniform(15, 45);
+		(*vanBoxRideTime)(rideTime);
+		Wait(rideTime);
 	} else {
 		cout << "VAN DONE! At time: " << Time  << endl;
-		
+		double rideTime = Uniform(10, 15);
+		(*vanBoxRideTime)(rideTime);
+		Wait(rideTime);
 	}
-	
+	cout << "VAN AT DEPO! At time: " << Time  << endl;
+
+	Leave(*vans_return, 1);
 }
