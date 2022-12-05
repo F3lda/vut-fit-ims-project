@@ -1,7 +1,7 @@
 
 #include "delivery_timer.h"
 
-#include "van.h"
+#include "van_working.h"
 
 
 
@@ -40,7 +40,7 @@ void DeliveryTimer::Behavior()
     
     *shiftState = 1;
     for(void *van : this->vansList) {
-        ((Van*)van)->Cancel();
+        ((VanWorking*)van)->Cancel();
     }
     Cancel();
 }
