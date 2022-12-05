@@ -1,7 +1,6 @@
 #ifndef DEPOTIMER_H
 #define DEPOTIMER_H
 
-
 #include <simlib.h>
 #include "depo_timer.h"
 #include "depo.h"

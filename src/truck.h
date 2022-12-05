@@ -1,6 +1,7 @@
 #ifndef TRUCK_H
 #define TRUCH_H
 
+#pragma once
 #include <simlib.h>
 #include "../zadani/main.c"
 

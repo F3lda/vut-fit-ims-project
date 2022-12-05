@@ -1,5 +1,6 @@
 #include <simlib.h>
 #include "delivery.h"
+#include "depo.h"
 
 const int TRIALS = 5;
 
@@ -13,9 +14,12 @@ int main() {
       cout << "Trying simulation number " << i << endl;
       cout << "=======================================================================\n";
       cout << "Simulating delivery shift from 8 to 16" << endl;
-      Init(0, 24*60);
-      Delivery *del = new Delivery(13, 109, 0);
+      Init(0);
+      Depo *depo = new Depo(13);
+      Delivery *del = new Delivery(13, 109, 0, depo);
       del->Activate();
+      
+      //depo->Activate();
       Run();
       cout << "=======================================================================\n";
       cout << "Ending simulation number " << i << endl;

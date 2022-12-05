@@ -12,5 +12,6 @@ DepoTimer::DepoTimer(Depo *depo)
 void DepoTimer::Behavior()
 {
     cout << "Je 8 hodin ráno. Takže se nestihla práce v Depu\n\n";
-	delete depo;
+	depo->Cancel();
+    //Cancel();
 }

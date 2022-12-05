@@ -1,15 +1,14 @@
+
 #ifndef DELIVERYTIMER_H
 #define DELIVERYTIMER_H
-
 
 #include <simlib.h>
 #include "delivery.h"
 
-
 class DeliveryTimer : public Event
 {
 public:
-	DeliveryTimer(Delivery *Delivery);
+	DeliveryTimer(Delivery *delivery, int *state);
 
 	void Behavior() override;
 
@@ -24,6 +23,9 @@ private:
 	 * after work shift duration.
 	 */
 	Delivery *delivery;
+
+	int *state;
+
 };
 
 

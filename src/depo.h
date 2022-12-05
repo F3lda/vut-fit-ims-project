@@ -3,6 +3,7 @@
 
 #include <simlib.h>
 
+
 /*
 * Třída reprezentující práci v Depu od 16:00 do 8:00
 */
@@ -27,7 +28,7 @@ class Depo : public Process {
         /*
         * Kontruktor
         */
-        Depo(Store *vans);
+        Depo(unsigned long van_count);
 
         /*
         * Desktruktor
