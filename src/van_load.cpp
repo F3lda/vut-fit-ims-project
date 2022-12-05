@@ -26,16 +26,16 @@ void VanLoad::Behavior() {
 }
 
 VanLoad::~VanLoad() {
-    cout << "=======================================================================\n"
-		<< "Van load at depo shift ended.\n"
-		<< "\tEnd time: " << Time/60 << " hours.\n"
+    cout << "Van load at depo shift ended.\n"
+		<< "\tEnd time: " << Time/60 << " hours.\n" 
+        << "=======================================================================\n"
 		<< endl;
 
 
 
     if (Time < CONST_WORKING_SHIFT_LENGTH) {
-        cout << "LOAD SHIFT done on time (<8:00)" << endl;
+        cout << "WORKING SHIFT FINISHED IN TIME (" << Time/60 << " h < " << CONST_WORKING_SHIFT_LENGTH/60 << " h) [" << CONST_WORKING_SHIFT_LENGTH - Time << " minutes before end]\n" << endl;
     } else {
-        cout << "LOAD SHIFT not done on time (<8:00)" << endl;
+        cout << "WORKING SHIFT NOT FINISHED ON TIME (" << Time/60 << " h > " << CONST_WORKING_SHIFT_LENGTH/60 << " h) [" << Time - CONST_WORKING_SHIFT_LENGTH << " minutes after end]\n" << endl;
     }
 }

@@ -26,6 +26,7 @@ Delivery::Delivery(Depo *depo) {
 		<< "Delivery shift started.\n"
 		<< "\tStart time: " << Time << ".\n"
 		<< "\tNumber of vans: " << this->vans_working->Capacity() << ".\n"
+    << "-----------------------------------------------------------------------\n"
 		<< endl;
 }
 
@@ -45,10 +46,8 @@ void Delivery::Behavior() {
         
     }
 
-    cout << "While DONE" << endl;
     Enter(*vans_working, vans_working->Capacity());
     Leave(*vans_working, vans_working->Capacity());
-    cout << "WAIT DONE -- ALL VANS ARE AT DEPOT" << endl << endl;
     // Konec směny dodávek
     // Začátek směny u depa
     delete deliveryTimer;
@@ -60,11 +59,12 @@ Delivery::~Delivery() {
     delete vans_working;
 
 
-    cout << "=======================================================================\n"
+    cout << "-----------------------------------------------------------------------\n"
 		<< "Delivery DESTRUCTOR.\n"
 		<< "\tEnd Time: " << Time << ".\n"
 		<< "\tTotal van ride distance to Box: " << vanBoxRideTime->Sum() << " minutes.\n"
     << "\tTotal van ride distance to Deli Point: " << vanNonBoxRideTime->Sum() << " minutes.\n"
+    << "======================================================================="
 		<< endl;
     
     //cout << "=======================================================================\n" << endl;
@@ -75,7 +75,7 @@ Delivery::~Delivery() {
     vanCanceledRemainingTime->Output();
     //cout << "=======================================================================\n" << endl;
     vanReturnRideTime->Output();
-    
+    cout << "=======================================================================" << endl;
     
     delete vanBoxRideTime;
     delete vanNonBoxRideTime;

@@ -16,8 +16,6 @@ class Worker : public Process {
 
         Store *workers;
 
-        Stat *workerWorkTime;
-
         long unsigned int *packages;
 
         int unloading;

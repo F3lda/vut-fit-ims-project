@@ -19,18 +19,16 @@ Depo::Depo(TruckWork *truckWork) {
 }
 
 void Depo::Behavior() {
+    StartTime = Time;
+
     cout << "=======================================================================\n"
 		<< "Depo shift started.\n"
 		<< "\tStart time: " << Time << " minutes.\n"
 		<< "\tNumber of vans: " << vans->Capacity() << ".\n"
 		<< "\tNumber of workers: " << workers->Capacity() << ".\n"
 		<< "\tNumber of trucks: " << trucks->Capacity() << ".\n"
+        << "-----------------------------------------------------------------------\n"
 		<< endl;
-
-
-
-    unsigned long packages = this->vans->Capacity() * CONST_VAN_CAPACITY;
-    cout << packages << endl;
 
 
     unsigned long unloading_packages = 0;
@@ -60,33 +58,30 @@ void Depo::Behavior() {
 
             cout << unloading_vans <<" Van unloading" << endl;
         }
-
-
-
-        packages--;
     }
     
     // čekání na vyložení všech dodávek a na všechny zaměstnance
-    cout << "DEPO DONE: " << packages << endl;
     Enter(*vans, vans->Capacity());
     Leave(*vans, vans->Capacity());
     Enter(*workers, workers->Capacity());
     Leave(*workers, workers->Capacity());
-    cout << "DEPO DONE: " << *unloaded_packages << endl;
-    cout << "DEPO DONE: " << Time << endl;
 
 
-    cout << "=======================================================================\n"
+    cout << "-----------------------------------------------------------------------\n"
 		<< "Van unloading at depo ended.\n"
 		<< "\tEnd Time: " << Time << ".\n"
+		<< "\tDuration: " << Time-StartTime << ".\n"
+        << "======================================================================="
 		<< endl;
+    
+
+
+    StartTime = Time;
     cout << "=======================================================================\n"
 		<< "Truck loading at depo started.\n"
 		<< "\tEnd Time: " << Time << ".\n"
+        << "-----------------------------------------------------------------------"
 		<< endl;
-    cout << packages << endl;
-
-
 
 
     unsigned long loading_packages = 0;
@@ -116,27 +111,13 @@ void Depo::Behavior() {
 
             cout << loading_trucks <<" Van unloading" << endl;
         }
-
-
-
-        packages++;
     }
     
     // čekání na vyložení všech dodávek a na všechny zaměstnance
-    cout << "DEPO DONE: " << packages << endl;
     Enter(*vans, vans->Capacity());
     Leave(*vans, vans->Capacity());
     Enter(*workers, workers->Capacity());
     Leave(*workers, workers->Capacity());
-    cout << "DEPO DONE: " << *loaded_packages << endl;
-    cout << "DEPO DONE: " << Time << endl;
-
-
-
-    cout << "=======================================================================\n"
-		<< "Truck loading at depo ended.\n"
-		<< "\tEnd Time: " << Time << ".\n"
-		<< endl;
 }
 
 Depo::~Depo() {
@@ -149,9 +130,11 @@ Depo::~Depo() {
 
 
 
-    cout << "=======================================================================\n"
+    cout << "-----------------------------------------------------------------------\n"
 		<< "Depo shift ended ended.\n"
 		<< "\tEnd Time: " << Time << ".\n"
+        << "\tDuration: " << Time-StartTime << ".\n"
+        << "======================================================================="
 		<< endl;
 
 

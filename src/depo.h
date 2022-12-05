@@ -30,6 +30,8 @@ class Depo : public Process {
 
         unsigned long *unloaded_packages;
         unsigned long *loaded_packages;
+
+        double StartTime;
         
     public:
         /*

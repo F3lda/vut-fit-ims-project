@@ -28,7 +28,7 @@ TruckWork::~TruckWork() {
 
     cout << "\n"
 		<< "Truck shift ended.\n"
-		<< "\tEnd time: " << Time/60 << " hours.\n"
+		<< "\tEnd time: " << Time/60 << " hours."
 		<< endl;
 
 

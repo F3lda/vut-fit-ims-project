@@ -44,7 +44,7 @@ void VanWorking::Behavior()
 }
 
 VanWorking::~VanWorking() {
-	cout << "STATE: " << *state << endl;
+	// is shift done?
 	if (*state == 0) {
 		((DeliveryTimer *)delivery_timer)->deleteVan(this);
 	}
@@ -52,10 +52,10 @@ VanWorking::~VanWorking() {
 	if (*state == 1) {
 		(*vanCanceledRemainingTime)(rideTime-Time);
 
-		cout << "VAN GO HOME! At time: " << Time  << endl;
+		cout << "VAN SHIFT CANCELED! At time: " << Time  << endl;
 		(new VanDone(vans_working, 1, vanReturnRideTime))->Activate();
 	} else {
-		cout << "VAN DONE! At time: " << Time  << endl;
+		cout << "VAN DONE IN TIME! At time: " << Time  << endl;
 		(new VanDone(vans_working, 0, vanReturnRideTime))->Activate();
 	}
 }

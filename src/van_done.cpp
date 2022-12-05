@@ -29,7 +29,6 @@ void VanDone::Behavior()
 		(*vanReturnRideTime)(rideTime);
 		Wait(rideTime);
     }
-    cout << "Van on way home!"  << endl;
 }
 
 VanDone::~VanDone() {

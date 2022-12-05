@@ -8,15 +8,11 @@ using namespace std;
 Worker::Worker(Store *vehicles, Store *workers, long unsigned int *packages, int unloading) {
     this->vehicles = vehicles;
     this->workers = workers;
-    this->workerWorkTime = new Stat("Čas nakládání vozidla");
     this->packages = packages;
     this->unloading = unloading;
 }
 
 void Worker::Behavior() {
-    //(*workerWorkTime)(unloadTime);
-	
-
     if (unloading == 1) {
         Wait(CONST_EMPLOYEE_PACKET_UNLOAD_TIME);
 
