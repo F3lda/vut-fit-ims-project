@@ -1,4 +1,3 @@
-
 #ifndef DELIVERY_H
 #define DELIVERY_H
 
@@ -6,8 +5,10 @@
 #include <iostream>
 #include <vector>
 
-#include "van.h"
+#include "van_working.h"
 #include "depo.h"
+
+
 
 using namespace std;
 /*
@@ -26,12 +27,6 @@ class Delivery : public Process
         */
         Store *vans_working;
 
-        Store *vans_return;
-
-        Store *vans_cancel;
-        
-        Store *vans_done;
-
         /*
         * Statistika určující čas cesty na box
         */
@@ -45,7 +40,10 @@ class Delivery : public Process
         /*
         * Statistika určující čas výkládání zásilky na výdejně/boxu
         */
-        Stat *vanLoadToPointTime;
+        Stat *vanCanceledRemainingTime;
+
+
+        Stat *vanReturnRideTime;
 
         
     public:
